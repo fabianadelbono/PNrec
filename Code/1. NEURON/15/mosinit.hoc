@@ -1,0 +1,21 @@
+// this file loads the NEURON GUI, creates an mrg axon and 
+// opens the session with the plots
+// additional lines include the plot of subsequent nodes to
+// see the propagation of the signal and the plot of the 
+// membrane current at one node
+// then the simulation is run automatically and the data are saved to a file
+load_file("nrngui.hoc")
+xopen("MRGaxon.hoc")
+//xopen("vec_generation.hoc")
+xopen("vec_generationLoop.hoc")
+xopen("MRGaxon.ses")
+//following is added by me:
+xopen("propagation.ses") //opens plot of the voltage propagation along the nodes
+xopen("i_membrane.ses") //opens plot of membrane current propagation along the nodes
+//this is for automatic initialisation and run of the program
+init()
+run()
+//this is for saving to a file the membrane currents
+//xopen("save_vec.hoc")
+xopen("currentConversion.hoc")
+xopen("fileCreationLoop.hoc")

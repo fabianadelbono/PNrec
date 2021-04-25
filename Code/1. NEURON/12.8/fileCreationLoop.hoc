@@ -1,0 +1,31 @@
+// File creation for each node current - to substitute "save_vec.hoc"
+// Definition of a string containing the filename root (same as in COMSOL)
+strdef txtFileName,txtFileNameRoot,txtFileExtension
+txtFileNameRoot = "Currents_"
+txtFileExtension = ".txt"
+
+// Creation of a template for file generation (JUST THE OBJECT DECLARATION)
+begintemplate createObj
+	public _Object_
+	objref _Object_ // Creates new object
+endtemplate createObj
+
+objref txtFile,imem
+strdef imemCreation
+
+for j = 0, axonnodes-1 {
+
+	sprint(imemCreation, "imem = point_i%d", j+1) 
+	execute(imemCreation)
+
+	// Filename string creation
+	sprint(txtFileName,"%s%d%s",txtFileNameRoot,j,txtFileExtension)
+	// File creation
+	txtFile = new createObj() 
+	txtFile = new File(txtFileName)
+	txtFile.wopen(txtFileName)
+	// File writing (for loop)
+	for i = 0,tvec.size()-1 {txtFile.printf("%f\t %e\n",tvec.x[i],imem.x[i])}
+	// File closing
+	txtFile.close()
+}

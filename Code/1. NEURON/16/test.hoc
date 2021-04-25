@@ -1,0 +1,20 @@
+// Test
+load_file("nrngui.hoc")
+strdef txtFileName,txtFileNameRoot,txtFileExtension
+txtFileNameRoot = "Currents_"
+txtFileExtension = ".txt"
+
+objref file_curr
+begintemplate createObj
+	public _Object_
+	objref _Object_ // Creates new object
+endtemplate createObj
+
+for i = 0, 1 {	
+	// Filename string creation
+	sprint(txtFileName,"%s%d%s",txtFileNameRoot,i,txtFileExtension)
+	// File creation
+	file_curr = new createObj()
+	file_curr = new File(txtFileName)
+	file_curr.wopen(txtFileName)
+} 

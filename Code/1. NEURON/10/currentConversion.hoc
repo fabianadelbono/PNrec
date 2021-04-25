@@ -1,0 +1,9 @@
+nodesurface = nodelength*PI*fiberD
+conv_factor = nodesurface*(1e-11)
+for i = 0,axonnodes-1 {
+
+	sprint(cstr, "objref point_i%d", i+1)
+  	execute(cstr)
+	sprint(cstr, "point_i%d = imem%d.mul(conv_factor)", i+1, i+1) // Creates converted PCS
+  	execute(cstr)
+}

@@ -1,0 +1,17 @@
+// this file just performs the saving of the membrane current saved in the vector imem1 to a
+// .txt file named "Currents"
+// This script has to be run after the init&run, otherwise the file will be empty
+
+objref memcurr_1, memcurr_2
+memcurr_1 = new File("Currents_1.txt") //creates a new file object
+memcurr_2 = new File("Currents_2.txt") //creates a new file object
+memcurr_1.wopen("Currents_1.txt") //opens file for writing
+memcurr_2.wopen("Currents_2.txt") //opens file for writing
+//imem1.printf("%f,") //prints to screen 
+//tvec.printf() //prints to screen 7/7
+//imem1.printf(memcurr, "%f\n") //prints values to file as float followed by comma
+for i = 0,tvec.size()-1 {memcurr_1.printf("%f\t %f\n",tvec.x[i],imem1.x[i])}
+memcurr_1.close()
+for i = 0,tvec.size()-1 {memcurr_2.printf("%f\t %f\n",tvec.x[i],imem2.x[i])}
+memcurr_2.close()
+

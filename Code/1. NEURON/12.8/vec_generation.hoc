@@ -1,0 +1,8 @@
+objref imem1,imem2,tvec
+imem1 = new Vector()
+imem2 = new Vector()
+tvec = new Vector() // Creates time axis vector
+imem1.record(&node[0].i_membrane(0.5)) //The line Vector[3] appears in the code. If adding dt as second argument, the length decreases by 1
+imem2.record(&node[5].i_membrane(0.5))
+tvec.record(&t) // Records time axis vector
+// Items are saved to file by executing the script 'save_vec.hoc'

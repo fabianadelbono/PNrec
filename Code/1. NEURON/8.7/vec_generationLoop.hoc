@@ -1,0 +1,19 @@
+// Vec_generation Loop
+objref tvec
+strdef cstr
+
+tvec = new Vector() // Creates time axis vector
+for i = 0,axonnodes-1 {
+
+	sprint(cstr, "objref imem%d", i+1)
+  	execute(cstr)
+ 	sprint(cstr, "imem%d = new Vector()", i+1)
+  	execute(cstr)
+	sprint(cstr, "imem%d.record(&node[%d].i_membrane(0.5))", i+1, i)
+  	execute(cstr)
+
+}
+
+tvec.record(&t) // Records time axis vector
+
+// Items are saved to file by executing the script 'save_vec.hoc'
